@@ -58,7 +58,10 @@ export default function Home() {
           <div className={styles.restoGrid}>
             {RESTAURANTES.map((r) => (
               <Link key={r.slug} href={`/${r.slug}`} className={styles.restoCard}>
-                <span className={styles.restoLogoPlaceholder}>{r.nombre.charAt(0)}</span>
+                <span className={styles.restoLogoBox}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className={styles.restoLogoImg} src={r.logo} alt={r.nombre} />
+                </span>
                 <p className={styles.restoName}>{r.nombre}</p>
                 <p className={styles.restoMeta}>
                   <b>{r.reviews}</b> reseñas · <b>{r.rating}★</b>

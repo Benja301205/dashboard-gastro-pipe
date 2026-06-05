@@ -3,6 +3,7 @@ export type Sev = 'ALTA' | 'MED' | 'BAJA'
 export type Restaurant = {
   slug: string
   nombre: string
+  logo: string
   reviews: number
   rating: number
   /* Pulso: [14 días, 60 días, histórico] */
@@ -32,6 +33,7 @@ export const RESTAURANTES: Restaurant[] = [
   {
     slug: 'lardito',
     nombre: 'Lardito',
+    logo: '/lardito.jpg',
     reviews: 152,
     rating: 4.6,
     pulso: {
@@ -107,6 +109,7 @@ export const RESTAURANTES: Restaurant[] = [
   {
     slug: 'parrilla-maravilla',
     nombre: 'Parrilla Maravilla',
+    logo: '/parrilla-maravilla.png',
     reviews: 151,
     rating: 4.6,
     pulso: {
@@ -191,6 +194,7 @@ export const RESTAURANTES: Restaurant[] = [
   {
     slug: 'las-patriotas',
     nombre: 'Las Patriotas Vilardo',
+    logo: '/las-patriotas.jpg',
     reviews: 52,
     rating: 4.6,
     pulso: {

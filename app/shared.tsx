@@ -105,6 +105,10 @@ export function RestaurantView({ r }: { r: Restaurant }) {
     <>
       <div className={styles.rHeader}>
         <div>
+          <span className={styles.rLogoBox}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.rLogoImg} src={r.logo} alt={r.nombre} />
+          </span>
           <p className="eyebrow">Reseñas de Google · Análisis</p>
           <h1 className={styles.rName}>{r.nombre}</h1>
           <div className={styles.rMeta}>
