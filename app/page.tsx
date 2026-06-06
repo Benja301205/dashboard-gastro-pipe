@@ -4,9 +4,9 @@ import { RESTAURANTES } from './data'
 import styles from './landing.module.css'
 
 export const metadata = {
-  title: 'Reseñas · Lardito · Parrilla Maravilla · Las Patriotas',
+  title: 'Reseñas · Lardito · Parrilla Maravilla · Las Patriotas · Lardo & Rosemary',
   description:
-    'Las reseñas de Google de los tres restaurantes, leídas en serio: pulso de rating, problemas recurrentes y la acción de la semana de cada local.',
+    'Las reseñas de Google de los cuatro restaurantes, leídas en serio: pulso de rating, problemas recurrentes y la acción de la semana de cada local.',
 }
 
 const STEPS = [
@@ -45,13 +45,13 @@ export default function Home() {
         <header className={styles.hero}>
           <p className={styles.eyebrow}>Análisis de reseñas · Google</p>
           <h1 className={styles.title}>
-            3 restaurantes,
+            4 restaurantes,
             <br />
             una sola <em>lectura</em>.
           </h1>
           <p className={styles.lead}>
-            Las reseñas de Google de Lardito, Parrilla Maravilla y Las Patriotas, leídas en
-            serio: pulso de rating, problemas recurrentes, elogios y la acción de la semana
+            Las reseñas de Google de Lardito, Parrilla Maravilla, Las Patriotas y Lardo &amp; Rosemary,
+            leídas en serio: pulso de rating, problemas recurrentes, elogios y la acción de la semana
             de cada local — más la comparativa del grupo.
           </p>
 

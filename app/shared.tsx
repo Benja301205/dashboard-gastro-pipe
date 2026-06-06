@@ -8,12 +8,13 @@ const NAV_LINKS = [
   { href: '/lardito', label: 'Lardito' },
   { href: '/parrilla-maravilla', label: 'Parrilla M.' },
   { href: '/las-patriotas', label: 'Las Patriotas' },
+  { href: '/lardo-rosemary', label: 'Lardo & R.' },
 ]
 
 export function DashNav({ active }: { active: string }) {
   return (
     <nav className={styles.editionNav} aria-label="Selector de locales">
-      <span className={styles.editionNavBrand}>Reseñas Google · 3 locales</span>
+      <span className={styles.editionNavBrand}>Reseñas Google · 4 locales</span>
       <div className={styles.editionNavGroup}>
         {NAV_LINKS.map((l) => {
           const isActive = l.href === active
@@ -37,7 +38,7 @@ export function DashFooter() {
   return (
     <footer className={styles.pageFooter}>
       <div className={styles.footerLeft}>
-        <span>Lardito · Parrilla Maravilla · Las Patriotas · reseñas de Google</span>
+        <span>Lardito · Parrilla Maravilla · Las Patriotas · Lardo &amp; Rosemary · reseñas de Google</span>
       </div>
       <span className={styles.footerCredit}>
         Análisis por{' '}

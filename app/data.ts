@@ -250,6 +250,92 @@ export const RESTAURANTES: Restaurant[] = [
         'Único patrón operativo repetido. Y empezar a responder reviews: con 4.6★ subiendo, responder bien rinde más que en ningún otro local.',
     },
   },
+  {
+    slug: 'lardo-rosemary',
+    nombre: 'Lardo & Rosemary',
+    logo: '/lardo-rosemary.jpg',
+    reviews: 64,
+    rating: 4.60,
+    pulso: {
+      ratingProm: ['4.75★', '4.79★', '4.60★'],
+      reviews: ['6', '20', '64'],
+      pct12: ['0%', '0%', '3%'],
+      pctResp: ['0%', '0%', '0%'],
+    },
+    tendencia: 'Estable',
+    tendenciaTexto:
+      'Sube desde el histórico con mínima variación entre ventanas recientes. Sin problemas operativos agudos.',
+    problemas: [
+      {
+        problema: 'Sin opciones para celíacos (sin TACC)',
+        d14: 0,
+        d60: 0,
+        hist: 2,
+        sev: 'MED' as const,
+        quote: {
+          texto:
+            'No tienen opciones para celiacos. Que alguien les avise que es el 2026 así se agiornan.',
+          meta: '1★ · 2026-02-18',
+        },
+      },
+      {
+        problema: 'Porciones chicas / precio elevado',
+        d14: 1,
+        d60: 2,
+        hist: 9,
+        sev: 'BAJA' as const,
+        quote: {
+          texto:
+            'Muy rico, un poco caro y se pasa de cool. Lindo ambiente. Conviene ir con reserva.',
+          meta: '4★ · 2026-01-27',
+        },
+      },
+      {
+        problema: 'Postres flojos',
+        d14: 0,
+        d60: 0,
+        hist: 2,
+        sev: 'BAJA' as const,
+        quote: {
+          texto:
+            'Los postres bastante flojos. Usé dos bigbox por todo lo que ven en las fotos. 100% recomendada la experiencia la verdad.',
+          meta: '4★ · 2026-05-02',
+        },
+      },
+      {
+        problema: 'Sin cambiador para bebés',
+        d14: 0,
+        d60: 0,
+        hist: 1,
+        sev: 'MED' as const,
+        quote: {
+          texto:
+            'Muy buena la comida la carta de vinos y la atención. Muy malo que no tengan cambiador para bebés.',
+          meta: '3★ · 2025-11-04',
+        },
+      },
+    ],
+    elogios: [
+      { elogio: 'Ambiente íntimo / cálido', d14: 2, d60: 6, hist: 17 },
+      { elogio: 'Comida creativa / deliciosa', d14: 1, d60: 4, hist: 15 },
+      { elogio: 'Atención excelente', d14: 2, d60: 6, hist: 14 },
+      { elogio: 'Carta de vinos', d14: 2, d60: 5, hist: 13 },
+    ],
+    alertas: {
+      nuevo: 'Sin reseñas de 1-2★ en los últimos 14 días. Hay mención de precio/porciones dentro de un review de 5★ — no es queja formal pero confirma que la percepción persiste.',
+      escalando: 'Nada.',
+      resuelto: 'Nada que se haya resuelto (problemas actuales son estructurales o de baja frecuencia).',
+      eterno:
+        'Porciones/precio (aceptado por el concepto, mencionado incluso en reseñas de 5★). Sin TACC (sin señal de que se haya trabajado). Sin cambiador (accionable, bajo costo).',
+    },
+    staff:
+      'Ramiro (encargado): 1 mención positiva ("muy atento y explicando cada detalle de cada plato"). Juani: 1 mención positiva.',
+    accion: {
+      titulo: 'Incorporar opciones gluten-free en la carta',
+      texto:
+        'El único 1★ en el dataset es por ausencia de opciones sin TACC. Incorporar 2 opciones gluten-free claramente señalizadas en la carta es la acción de mayor retorno reputacional disponible: convierte una crítica de 1★ recurrente en un diferenciador.',
+    },
+  },
 ]
 
 export const COMPARATIVA = {
