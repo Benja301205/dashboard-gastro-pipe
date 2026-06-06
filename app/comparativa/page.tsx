@@ -3,8 +3,8 @@ import { DashShell } from '../shared'
 import styles from '../dash.module.css'
 
 export const metadata = {
-  title: 'Comparativa del grupo · 3 restaurantes',
-  description: 'Lectura transversal de los tres restaurantes: patrones comunes y palancas del grupo.',
+  title: 'Comparativa del grupo · 4 restaurantes',
+  description: 'Lectura transversal de los cuatro restaurantes: patrones comunes y palancas del grupo.',
 }
 
 function chipClass(value: string) {
@@ -47,6 +47,9 @@ export default function ComparativaPage() {
                 </span>
                 <span className={chipClass(p.patriotas)}>
                   Las Patriotas <b>{p.patriotas}</b>
+                </span>
+                <span className={chipClass(p.lardoRosemary)}>
+                  Lardo & R. <b>{p.lardoRosemary}</b>
                 </span>
               </div>
               <p className={styles.patronLectura}>{p.lectura}</p>

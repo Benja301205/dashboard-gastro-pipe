@@ -255,77 +255,97 @@ export const RESTAURANTES: Restaurant[] = [
 export const COMPARATIVA = {
   patrones: [
     {
-      patron: 'Dotación corta en horas pico (mozos sobrecargados, "hay que buscarlos")',
-      lardito: 'Sí',
-      parrilla: 'Sí (domingos)',
-      patriotas: 'Sí (finde)',
-      lectura:
-        'Problema de scheduling del grupo, no de un local: la planificación de turnos subdimensiona los picos.',
-    },
-    {
-      patron: 'Cero gestión de respuestas en Google (~0%)',
-      lardito: '0.7%',
+      patron: 'Respuestas del dueño casi nulas en Google',
+      lardito: '≈1%',
       parrilla: '0%',
       patriotas: '0%',
+      lardoRosemary: '0%',
       lectura:
-        'El grupo no responde NADA, ni reclamos ALTA (crudo, cobro, maltrato). Reputación online abandonada.',
+        'Lardito tiene 1 respuesta sobre 151 reviews; los otros 3 en 0% — los 1-2★ quedan sin respuesta pública en todo el grupo.',
     },
     {
-      patron: 'Percepción "caro / no lo vale"',
+      patron: 'Atención excelente como fortaleza',
       lardito: 'Sí',
       parrilla: 'Sí',
       patriotas: 'Sí',
+      lardoRosemary: 'Sí',
       lectura:
-        'El posicionamiento premium genera la misma fricción precio-valor en los 3 conceptos.',
+        'Activo diferenciador compartido — cultura de servicio sólida en los 4 locales.',
     },
     {
-      patron: 'Ambiente ruidoso',
+      patron: 'Ambiente / diseño como valor',
       lardito: 'Sí',
       parrilla: 'Sí',
-      patriotas: 'No',
+      patriotas: 'Sí',
+      lardoRosemary: 'Sí',
       lectura:
-        'Acústica de salones/patios duros; Patriotas (más íntimo) se salva.',
+        'Los 4 locales usan el espacio como argumento gastronómico.',
     },
     {
-      patron: 'Inconsistencia de cocción/temperatura (crudo/frío)',
-      lardito: 'Leve',
-      parrilla: 'Sí (fuerte)',
-      patriotas: 'No',
-      lectura: 'Concentrado en Parrilla; es el foco crítico individual.',
+      patron: 'Porciones chicas / precio caro',
+      lardito: 'Sí',
+      parrilla: 'No',
+      patriotas: 'Sí',
+      lardoRosemary: 'Sí',
+      lectura:
+        '3 de 4 conceptos generan esta fricción — gestión comunicacional pendiente.',
+    },
+    {
+      patron: 'Carta de vinos como propuesta clave',
+      lardito: 'Sí',
+      parrilla: 'Sí',
+      patriotas: 'Sí',
+      lardoRosemary: 'Sí',
+      lectura:
+        'El vino es el hilo conductor del grupo.',
+    },
+    {
+      patron: 'Clientes internacionales frecuentes',
+      lardito: 'Sí',
+      parrilla: 'Sí',
+      patriotas: 'Sí',
+      lardoRosemary: 'Sí',
+      lectura:
+        'Presencia turística en todos — oportunidad de reviews en inglés no capturada.',
     },
   ],
   haceBien: [
     {
       marca: 'Lardito',
       texto:
-        'Asesoramiento de vinos con sommelier + estética del espacio — el "ritual" de carta de vinos es su sello (19 elogios).',
+        'El sommelier como operador visible genera confianza y fidelidad. Los otros locales no tienen un rol así de identificado públicamente.',
     },
     {
       marca: 'Parrilla Maravilla',
       texto:
-        'Equipo con identidad y querido por nombre (Leandro, Felipe, Jonás) — los otros dos no logran que el cliente recuerde a nadie. Cuando hay equipo, la atención brilla.',
+        'Staff nombrado individualmente en reseñas (6 nombres distintos). La personalización del servicio es más fuerte que en los otros 3.',
     },
     {
       marca: 'Las Patriotas',
       texto:
-        'Consistencia y clima íntimo — mejor curva de rating (5.0 reciente), casi sin quejas y efecto "joyita escondida". Es el modelo de experiencia a replicar.',
+        'Bartender como cara del local (Patricio/Pato). Modelo replicable: 1 persona = imagen del lugar. Además, el mejor momentum actual (5.0★ en 14d).',
+    },
+    {
+      marca: 'Lardo & Rosemary',
+      texto:
+        'El concepto más consistente en calidad: menor dispersión de quejas, sin problemas operativos agudos.',
     },
   ],
   puntos: [
     {
-      titulo: 'Staffing de picos (los 3)',
+      titulo: 'Política de respuesta a reviews (~0% en los 4 locales)',
       texto:
-        'Los reclamos de servicio lento/desatento no son de actitud, son de gente faltante en los momentos llenos (Parrilla domingos, Lardito y Patriotas finde noche). Revisar grilla de turnos a nivel grupo.',
+        'Lardito tiene 1 respuesta sobre 151 reviews; los otros 3 están en 0%. Los 1★ y 2★ quedan sin respuesta pública en prácticamente todo el grupo. Una respuesta profesional a una mala reseña vale más que 5 nuevas de 5★ en términos de percepción de nuevos visitantes. Implementar protocolo de respuesta en 48hs para reseñas de 1-2★.',
     },
     {
-      titulo: 'Política de respuesta a reviews (los 3, ~0%)',
+      titulo: 'Servicio del domingo en Parrilla Maravilla (5 meses sin resolver)',
       texto:
-        'Hoy se pierden reclamos graves sin respuesta (pollo crudo, cobro mal, maltrato). Definir un protocolo único de respuesta en 48 hs — palanca de reputación gratis y transversal.',
+        'Es un agujero operativo puro de dimensionamiento de personal, no de cocina ni de producto. Seguirá generando reviews de 1★ que arrastran el promedio si no se actúa.',
     },
     {
-      titulo: 'Estándar de consistencia operativa (los 3)',
+      titulo: 'Expectativas de precio/porción (3 de 4 conceptos)',
       texto:
-        'Un mismo manual para (a) protocolo de servicio —recepción, explicar carta, no levantar platos sin permiso— y (b) control de cocción/temperatura antes de salir de cocina. La marca premium se cae por inconsistencia, no por concepto.',
+        'Los clientes llegan sin entender el modelo de tapeo. Ningún local lo comunica proactivamente. Un simple "sugerimos 2-3 platos por persona" al inicio de la mesa reduciría la fricción sin cambiar nada del producto.',
     },
   ],
 }
