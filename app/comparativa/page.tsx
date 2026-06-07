@@ -3,27 +3,21 @@ import { DashShell } from '../shared'
 import styles from '../dash.module.css'
 
 export const metadata = {
-  title: 'Comparativa del grupo · 4 restaurantes',
-  description: 'Lectura transversal de los cuatro restaurantes: patrones comunes y palancas del grupo.',
-}
-
-function chipClass(value: string) {
-  const isNo = value.trim().toLowerCase().startsWith('no')
-  return `${styles.patronChip} ${isNo ? styles.no : ''}`
+  title: 'Comparativo transversal · Contame',
+  description: 'Patrones operativos comunes, fortalezas por sucursal y prioridades para la marca.',
 }
 
 export default function ComparativaPage() {
   return (
     <DashShell active="/comparativa">
       <div className={styles.chapterHead}>
-        <p className="eyebrow">Lectura transversal del grupo</p>
+        <p className="eyebrow">Comparativo transversal de Dean &amp; Dennys</p>
         <h2>
-          Comparativa del <em>grupo</em>
+          Patrones <em>operativos</em>
         </h2>
         <p>
-          Lo que aparece en 2 o más restaurantes deja de ser un tema de un local y pasa a
-          ser un tema del grupo. Acá están los patrones comunes, qué hace bien cada marca
-          y las palancas para el dueño.
+          Lo que se repite entre sucursales deja de ser un problema aislado y pasa a ser una
+          decisión de marca: cocina, salón, delivery, promos, respuesta pública e higiene.
         </p>
       </div>
 
@@ -32,24 +26,18 @@ export default function ComparativaPage() {
           <h2>
             Patrones <em>comunes</em>
           </h2>
-          <span className="num">aparecen en 2+ locales</span>
+          <span className="num">prioridad ejecutiva</span>
         </div>
         <div className={styles.patronList}>
           {COMPARATIVA.patrones.map((p) => (
             <div key={p.patron} className={styles.patronCard}>
               <p className={styles.patronTitle}>{p.patron}</p>
               <div className={styles.patronChips}>
-                <span className={chipClass(p.lardito)}>
-                  Lardito <b>{p.lardito}</b>
+                <span className={styles.patronChip}>
+                  Sucursales <b>{p.sucursales}</b>
                 </span>
-                <span className={chipClass(p.parrilla)}>
-                  Parrilla M. <b>{p.parrilla}</b>
-                </span>
-                <span className={chipClass(p.patriotas)}>
-                  Las Patriotas <b>{p.patriotas}</b>
-                </span>
-                <span className={chipClass(p.lardoRosemary)}>
-                  Lardo & R. <b>{p.lardoRosemary}</b>
+                <span className={styles.patronChip}>
+                  Prioridad <b>{p.prioridad}</b>
                 </span>
               </div>
               <p className={styles.patronLectura}>{p.lectura}</p>
@@ -61,9 +49,9 @@ export default function ComparativaPage() {
       <section>
         <div className="section-head">
           <h2>
-            Qué hace bien <em>cada uno</em>
+            Qué hace bien <em>cada sucursal</em>
           </h2>
-          <span className="num">fortalezas copiables entre marcas</span>
+          <span className="num">fortalezas copiables</span>
         </div>
         <div className={styles.insightGrid}>
           {COMPARATIVA.haceBien.map((item) => (
@@ -78,17 +66,15 @@ export default function ComparativaPage() {
       <section>
         <div className="section-head">
           <h2>
-            Puntos para <em>el dueño</em>
+            Top 5 <em>prioridades</em>
           </h2>
-          <span className="num">palancas a nivel grupo</span>
+          <span className="num">palancas para la marca</span>
         </div>
         <div className={styles.persistenceList}>
-          {COMPARATIVA.puntos.map((punto, i) => (
-            <div key={punto.titulo} className={styles.persistenceRow}>
-              <p>
-                {String(i + 1).padStart(2, '0')} · {punto.titulo}
-              </p>
-              <span>{punto.texto}</span>
+          {COMPARATIVA.prioridades.map((prioridad, i) => (
+            <div key={prioridad} className={styles.persistenceRow}>
+              <p>{String(i + 1).padStart(2, '0')}</p>
+              <span>{prioridad}</span>
             </div>
           ))}
         </div>

@@ -1,437 +1,374 @@
-export type Sev = 'ALTA' | 'MED' | 'BAJA'
+export type Sev = 'ALTA' | 'MEDIA' | 'BAJA'
+export type Health = 'verde' | 'amarillo' | 'rojo'
 
-export type Restaurant = {
+export type Branch = {
   slug: string
+  rank: number
   nombre: string
-  logo: string
+  short: string
   reviews: number
-  rating: number
-  /* Pulso: [14 días, 60 días, histórico] */
+  ratingHist: string
+  rating60d: string
+  pct12_60d: string
+  respuestaDueno: string
+  estado: Health
   pulso: {
-    ratingProm: [string, string, string]
-    reviews: [string, string, string]
-    pct12: [string, string, string]
-    pctResp: [string, string, string]
+    d14: string
+    d60: string
+    hist: string
   }
   tendencia: string
-  tendenciaTexto: string
+  tendenciaDetalle: string
   problemas: {
     problema: string
     d14: number
     d60: number
     hist: number
     sev: Sev
-    quote?: { texto: string; meta: string }
+    estado: string
   }[]
-  elogios: { elogio: string; d14: number; d60: number; hist: number }[]
-  alertas: { nuevo: string; escalando: string; resuelto: string; eterno: string }
-  staff: string
-  accion: { titulo: string; texto: string }
+  citas: string[]
+  elogios: string
+  accion: string
 }
 
-export const RESTAURANTES: Restaurant[] = [
+export const LOGO = '/contame-logo.jpeg'
+
+export const SUCURSALES: Branch[] = [
   {
-    slug: 'lardito',
-    nombre: 'Lardito',
-    logo: '/lardito.jpg',
-    reviews: 152,
-    rating: 4.6,
+    slug: 'belgrano',
+    rank: 1,
+    nombre: 'Dean & Dennys - Belgrano',
+    short: 'Belgrano',
+    reviews: 92,
+    ratingHist: '4.2★',
+    rating60d: '4.3★',
+    pct12_60d: '10%',
+    respuestaDueno: '3%',
+    estado: 'verde',
     pulso: {
-      ratingProm: ['4.8★', '4.7★', '4.6★'],
-      reviews: ['10', '35', '152'],
-      pct12: ['0%', '0%', '3.3%'],
-      pctResp: ['0%', '2.9%', '0.7%'],
+      d14: '4.0★ / 4 reviews / 17% 1-2★ / 33% resp',
+      d60: '4.3★ / 41 / 10% / 3%',
+      hist: '4.2★ / 92 / 12% / 3%',
     },
-    tendencia: 'Mejorando',
-    tendenciaTexto:
-      'Las últimas 2 semanas están impecables (4.8, sin negativas). Lo que ensucia el histórico es de hace 2-7 meses.',
+    tendencia: '➡️ estable',
+    tendenciaDetalle: 'Cliente internacional detectado.',
     problemas: [
-      {
-        problema:
-          'Atención inconsistente: mozos apurados/ausentes o trato frío al recibir y levantar platos',
-        d14: 2,
-        d60: 3,
-        hist: 9,
-        sev: 'MED',
-        quote: {
-          texto:
-            'La atención de la moza y del chico que nos recibió no fue con buena energía… Dar una carta y no explicar absolutamente nada de la misma, levantar con platos sin un "permiso puedo levantar?"',
-          meta: 'hace 22 días · 3★ · Local Guide',
-        },
-      },
-      {
-        problema: 'Caro / porciones chicas para el precio',
-        d14: 1,
-        d60: 2,
-        hist: 11,
-        sev: 'BAJA',
-        quote: {
-          texto:
-            'La comida, gourmet pero de tan chicas que son las raciones, no terminas de disfrutarlas y el precio es caro.',
-          meta: '2★ · Local Guide',
-        },
-      },
-      {
-        problema: 'Ruido + mal control de climatización (te toca debajo del AC)',
-        d14: 1,
-        d60: 2,
-        hist: 5,
-        sev: 'MED',
-        quote: {
-          texto:
-            'Ambiente: muy ruidoso, malo control de la climatización (te toca abajo del aire acondicionado y vas a comer incómodo).',
-          meta: '3★',
-        },
-      },
+      { problema: 'Atención mala / cajera', d14: 0, d60: 3, hist: 5, sev: 'ALTA', estado: '🔥' },
+      { problema: 'Precio/porciones', d14: 3, d60: 5, hist: 12, sev: 'BAJA', estado: '🔁' },
+      { problema: 'Ambiente/calor/promos', d14: 0, d60: 4, hist: 12, sev: 'MEDIA', estado: '🔁' },
     ],
-    elogios: [
-      { elogio: 'Lugar lindo / estética / patio', d14: 3, d60: 9, hist: 26 },
-      { elogio: 'Volvería / recomiendo / buena onda', d14: 1, d60: 7, hist: 29 },
-      { elogio: 'Carta de vinos + sommelier', d14: 1, d60: 4, hist: 19 },
-      { elogio: 'Comida rica (platitos)', d14: 2, d60: 3, hist: 7 },
-    ],
-    alertas: {
-      nuevo: 'Nada negativo nuevo — 14d limpio.',
-      escalando: 'Nada.',
-      resuelto:
-        'El cobro raro del "agua de cortesía" facturada como mineral (hace ~7 meses, no reaparece).',
-      eterno:
-        'Atención inconsistente y percepción precio/porción — siguen apareciendo (último, hace 22 días).',
-    },
-    staff:
-      'Sin nombre recurrente. Elogios genéricos al sommelier y a "el muchacho de rulos". (Menciones sueltas: Gabriela, Sebastián.)',
-    accion: {
-      titulo: 'Guion de servicio para mozos',
-      texto:
-        'Recibir con sonrisa → explicar la carta → pedir permiso antes de levantar platos. Es el único reclamo "eterno" y lo único que mancha un 4.8 reciente.',
-    },
+    citas: ['mala.omda de la cajera', 'Lentísimo el servicio, más de 40 minutos estuve', 'no estaba prendido el aire'],
+    elogios: 'Buena atención 21 en 60d; producto rico 4 en 60d. Staff: Martín, 4 positivas.',
+    accion: 'Reforzar protocolo de caja y salón en merienda/promos; responder los negativos recientes.',
   },
   {
-    slug: 'parrilla-maravilla',
-    nombre: 'Parrilla Maravilla',
-    logo: '/parrilla-maravilla.png',
-    reviews: 151,
-    rating: 4.6,
+    slug: 'belgrano-r',
+    rank: 2,
+    nombre: 'Dean & Dennys - Belgrano R',
+    short: 'Belgrano R',
+    reviews: 34,
+    ratingHist: '3.5★',
+    rating60d: '3.5★',
+    pct12_60d: '0%',
+    respuestaDueno: '0%',
+    estado: 'amarillo',
     pulso: {
-      ratingProm: ['4.7★', '4.7★', '4.6★'],
-      reviews: ['6', '38', '151'],
-      pct12: ['0%', '2.6%', '4.6%'],
-      pctResp: ['0%', '0%', '0%'],
+      d14: '4.0★ / 3 / 0% / 0%',
+      d60: '3.5★ / 5 / 0% / 0%',
+      hist: '3.5★ / 34 / 33% / 0%',
     },
-    tendencia: 'Mejorando',
-    tendenciaTexto:
-      'Pico de quejas fue hace ~3 meses (domingos), hoy más estable.',
+    tendencia: '📈 mejorando',
+    tendenciaDetalle: 'Baja muestra reciente.',
     problemas: [
-      {
-        problema: 'Carne/pollo servido crudo o mal cocido — y se niegan a recocinar',
-        d14: 0,
-        d60: 1,
-        hist: 7,
-        sev: 'ALTA',
-        quote: {
-          texto:
-            'Me trajeron un pollo crudo y no me lo quisieron cambiar… los fideos de la carta dicen ser unos y después te traen otros.',
-          meta: 'hace 78 días · 1★ · Local Guide',
-        },
-      },
-      {
-        problema: 'Falta de personal / servicio lento en picos (domingos)',
-        d14: 0,
-        d60: 1,
-        hist: 6,
-        sev: 'MED',
-        quote: {
-          texto:
-            'No dan a basto con tan pocos mozos para tanta gente, pedí tres veces cubiertos y me tocó pararme para pedir unos en la barra.',
-          meta: '1★',
-        },
-      },
-      {
-        problema: 'Comida sin sal / insípida',
-        d14: 0,
-        d60: 0,
-        hist: 5,
-        sev: 'MED',
-        quote: {
-          texto: 'Todos los platos estaban sin sal (grave), sobre todo la carne y las alitas.',
-          meta: '3★ · Local Guide',
-        },
-      },
-      {
-        problema: 'Ambiente muy ruidoso / oscuro / olor a cigarrillo adentro',
-        d14: 0,
-        d60: 1,
-        hist: 5,
-        sev: 'MED',
-        quote: {
-          texto:
-            'En el interior hay mucho olor a cigarrillo. Eso fue muy malo. Servicio amable, pero lento y confuso.',
-          meta: '3★ · Local Guide',
-        },
-      },
+      { problema: 'Espera/delivery', d14: 2, d60: 6, hist: 8, sev: 'MEDIA', estado: '🔥' },
+      { problema: 'Limpieza', d14: 0, d60: 4, hist: 6, sev: 'ALTA', estado: '🔥' },
+      { problema: 'Pedido mal armado', d14: 0, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
     ],
-    elogios: [
-      { elogio: 'Lugar/estética moderna + patio', d14: 1, d60: 7, hist: 35 },
-      { elogio: 'Volvería / recomiendo', d14: 1, d60: 6, hist: 31 },
-      { elogio: 'Atención (cuando hay equipo)', d14: 0, d60: 1, hist: 12 },
-      { elogio: 'Cortes + papas fritas', d14: 1, d60: 1, hist: 10 },
-    ],
-    alertas: {
-      nuevo: 'Nada — 14d sin negativas (n=6).',
-      escalando: 'Nada activo.',
-      resuelto:
-        'El colapso de servicio de los domingos (concentrado hace 2.5-3 meses) bajó de intensidad.',
-      eterno:
-        'Cocción de carne/pollo crudo — riesgo de inocuidad y agravado por no querer recambiar el plato. Además, cobro mal (valores distintos a la carta) — aislado pero severo (ALTA), vigilar.',
-    },
-    staff: 'Leandro · 3 menciones positivas. Felipe · 2 · Jonás · 2 · Joaquín · 1.',
-    accion: {
-      titulo: 'Control de cocción obligatorio (pollo y carne)',
-      texto:
-        'Chequeo antes de salir de cocina + política de recocción inmediata sin discutir con el cliente. Es el problema ALTA y, paradójicamente, la firma de la marca.',
-    },
+    citas: ['esperas mínimo una hora', 'la limpieza deja mucho que desear', 'me trajeron mal la hamburguesa'],
+    elogios: 'Producto rico 1 en 60d; rapidez 1 en 60d.',
+    accion: 'Separar cola delivery/retiro y checklist visible de limpieza por franja.',
   },
   {
-    slug: 'las-patriotas',
-    nombre: 'Las Patriotas Vilardo',
-    logo: '/las-patriotas.jpg',
-    reviews: 52,
-    rating: 4.6,
+    slug: 'dean-dennys',
+    rank: 3,
+    nombre: 'Dean & Dennys',
+    short: 'Dean & Dennys',
+    reviews: 28,
+    ratingHist: '3.6★',
+    rating60d: '3.8★',
+    pct12_60d: '32%',
+    respuestaDueno: '0%',
+    estado: 'amarillo',
     pulso: {
-      ratingProm: ['5.0★', '4.8★', '4.6★'],
-      reviews: ['3', '18', '52'],
-      pct12: ['0%', '0%', '3.8%'],
-      pctResp: ['0%', '0%', '0%'],
+      d14: '4.3★ / 10 / 17% / 0%',
+      d60: '3.8★ / 14 / 32% / 0%',
+      hist: '3.6★ / 28 / 34% / 0%',
     },
-    tendencia: 'Mejorando',
-    tendenciaTexto:
-      'El más chico en volumen, pero el de mejor curva (5.0 reciente). Casi sin quejas.',
+    tendencia: '📈 mejorando',
+    tendenciaDetalle: 'Repunte reciente con todavía muchas menciones operativas.',
     problemas: [
-      {
-        problema: 'Personal escaso en horas pico (viernes/sáb noche)',
-        d14: 0,
-        d60: 0,
-        hist: 2,
-        sev: 'MED',
-        quote: {
-          texto:
-            'La atención fue regular; se notaba poco personal para un viernes por la noche de enero.',
-          meta: '3★ · Local Guide',
-        },
-      },
-      {
-        problema: 'Precio alto (vino y comida)',
-        d14: 0,
-        d60: 1,
-        hist: 3,
-        sev: 'BAJA',
-        quote: {
-          texto:
-            'Los precios son altos tanto en vino como en comida… vinos de tan poco costo en este bar están muy caros.',
-          meta: '3★ · Local Guide',
-        },
-      },
+      { problema: 'Producto frío', d14: 2, d60: 4, hist: 8, sev: 'MEDIA', estado: '🔥' },
+      { problema: 'Demora cocina', d14: 0, d60: 4, hist: 10, sev: 'MEDIA', estado: '🔁' },
+      { problema: 'Reclamo sin respuesta', d14: 2, d60: 4, hist: 4, sev: 'ALTA', estado: '🔥' },
     ],
-    elogios: [
-      { elogio: 'Ambiente acogedor / "joyita escondida"', d14: 1, d60: 4, hist: 9 },
-      { elogio: 'Selección de vinos + música', d14: 1, d60: 1, hist: 4 },
-    ],
-    alertas: {
-      nuevo: 'Nada.',
-      escalando: 'Nada.',
-      resuelto: '—',
-      eterno:
-        'Ninguno sostenido. Incidente aislado ALTA (hace ~7 meses): empleado mayor "de rodete" levantó la voz a clientes por una vianda de afuera con la cocina cerrada — maltrato, episodio único, vigilar que no se repita.',
-    },
-    staff: 'Nadie nombrado (positivo ni negativo).',
-    accion: {
-      titulo: 'Reforzar dotación viernes/sábado a la noche',
-      texto:
-        'Único patrón operativo repetido. Y empezar a responder reviews: con 4.6★ subiendo, responder bien rinde más que en ningún otro local.',
-    },
+    citas: ['me llegó todo frío', 'Tardan mucho en la cocina', 'debut y despedida nunca más pido'],
+    elogios: 'Producto rico 6 en 60d; buena atención 4 en 60d. Staff: Erik, 1 positiva.',
+    accion: 'Medir tiempo cocina-delivery y responder los casos de comida fría.',
   },
   {
-    slug: 'lardo-rosemary',
-    nombre: 'Lardo & Rosemary',
-    logo: '/lardo-rosemary.jpg',
-    reviews: 64,
-    rating: 4.60,
+    slug: 'caballito',
+    rank: 4,
+    nombre: 'Dean & Dennys - Caballito',
+    short: 'Caballito',
+    reviews: 22,
+    ratingHist: '3.1★',
+    rating60d: '3.8★',
+    pct12_60d: '33%',
+    respuestaDueno: '0%',
+    estado: 'amarillo',
     pulso: {
-      ratingProm: ['4.75★', '4.79★', '4.60★'],
-      reviews: ['6', '20', '64'],
-      pct12: ['0%', '0%', '3%'],
-      pctResp: ['0%', '0%', '0%'],
+      d14: '0 reviews',
+      d60: '3.8★ / 7 / 33% / 0%',
+      hist: '3.1★ / 22 / 44% / 0%',
     },
-    tendencia: 'Estable',
-    tendenciaTexto:
-      'Sube desde el histórico con mínima variación entre ventanas recientes. Sin problemas operativos agudos.',
+    tendencia: '📈 mejorando',
+    tendenciaDetalle: 'Sin muestra 14d.',
     problemas: [
-      {
-        problema: 'Sin opciones para celíacos (sin TACC)',
-        d14: 0,
-        d60: 0,
-        hist: 2,
-        sev: 'MED' as const,
-        quote: {
-          texto:
-            'No tienen opciones para celiacos. Que alguien les avise que es el 2026 así se agiornan.',
-          meta: '1★ · 2026-02-18',
-        },
-      },
-      {
-        problema: 'Porciones chicas / precio elevado',
-        d14: 1,
-        d60: 2,
-        hist: 9,
-        sev: 'BAJA' as const,
-        quote: {
-          texto:
-            'Muy rico, un poco caro y se pasa de cool. Lindo ambiente. Conviene ir con reserva.',
-          meta: '4★ · 2026-01-27',
-        },
-      },
-      {
-        problema: 'Postres flojos',
-        d14: 0,
-        d60: 0,
-        hist: 2,
-        sev: 'BAJA' as const,
-        quote: {
-          texto:
-            'Los postres bastante flojos. Usé dos bigbox por todo lo que ven en las fotos. 100% recomendada la experiencia la verdad.',
-          meta: '4★ · 2026-05-02',
-        },
-      },
-      {
-        problema: 'Sin cambiador para bebés',
-        d14: 0,
-        d60: 0,
-        hist: 1,
-        sev: 'MED' as const,
-        quote: {
-          texto:
-            'Muy buena la comida la carta de vinos y la atención. Muy malo que no tengan cambiador para bebés.',
-          meta: '3★ · 2025-11-04',
-        },
-      },
+      { problema: 'Producto crudo/frío', d14: 0, d60: 2, hist: 4, sev: 'ALTA', estado: '🔥' },
+      { problema: 'Local orientado a delivery', d14: 0, d60: 1, hist: 8, sev: 'MEDIA', estado: '🔁' },
+      { problema: 'Atención/espera histórica', d14: 0, d60: 0, hist: 8, sev: 'ALTA', estado: '📉' },
     ],
-    elogios: [
-      { elogio: 'Ambiente íntimo / cálido', d14: 2, d60: 6, hist: 17 },
-      { elogio: 'Comida creativa / deliciosa', d14: 1, d60: 4, hist: 15 },
-      { elogio: 'Atención excelente', d14: 2, d60: 6, hist: 14 },
-      { elogio: 'Carta de vinos', d14: 2, d60: 5, hist: 13 },
+    citas: ['una vino cruda', 'hamburguesa fría', 'Puro delivery'],
+    elogios: 'Atención cordial y comida rica en 60d.',
+    accion: 'Doble control de cocción y prioridad mínima para cliente presencial.',
+  },
+  {
+    slug: 'devoto',
+    rank: 5,
+    nombre: 'Dean & Dennys Devoto',
+    short: 'Devoto',
+    reviews: 70,
+    ratingHist: '3.7★',
+    rating60d: '3.6★',
+    pct12_60d: '38%',
+    respuestaDueno: '8%',
+    estado: 'rojo',
+    pulso: {
+      d14: '2.8★ / 5 / 56% / 0%',
+      d60: '3.6★ / 15 / 38% / 8%',
+      hist: '3.7★ / 70 / 29% / 20%',
+    },
+    tendencia: '📉 empeorando',
+    tendenciaDetalle: 'Mayor deterioro: 14d cae a 2.8★ con 56% 1-2★.',
+    problemas: [
+      { problema: 'Atención mala', d14: 1, d60: 1, hist: 3, sev: 'ALTA', estado: '🆕' },
+      { problema: 'Demoras', d14: 2, d60: 4, hist: 13, sev: 'MEDIA', estado: '🔁' },
+      { problema: 'Ambiente/promos no vigentes', d14: 2, d60: 6, hist: 13, sev: 'MEDIA', estado: '🔥' },
     ],
-    alertas: {
-      nuevo: 'Sin reseñas de 1-2★ en los últimos 14 días. Hay mención de precio/porciones dentro de un review de 5★ — no es queja formal pero confirma que la percepción persiste.',
-      escalando: 'Nada.',
-      resuelto: 'Nada que se haya resuelto (problemas actuales son estructurales o de baja frecuencia).',
-      eterno:
-        'Porciones/precio (aceptado por el concepto, mencionado incluso en reseñas de 5★). Sin TACC (sin señal de que se haya trabajado). Sin cambiador (accionable, bajo costo).',
+    citas: ['Pésima atención', 'todo muy demorado', 'promociones en pantalla no vigentes'],
+    elogios: 'Producto rico 5 en 60d; buena atención 2 en 60d.',
+    accion: 'Auditoría express de comunicación de promos + brief obligatorio de trato y tiempos por turno.',
+  },
+  {
+    slug: 'flores',
+    rank: 6,
+    nombre: 'Dean & Dennys - Flores',
+    short: 'Flores',
+    reviews: 25,
+    ratingHist: '2.8★',
+    rating60d: '3.4★',
+    pct12_60d: '45%',
+    respuestaDueno: '9%',
+    estado: 'amarillo',
+    pulso: {
+      d14: '0 reviews',
+      d60: '3.4★ / 8 / 45% / 9%',
+      hist: '2.8★ / 25 / 51% / 3%',
     },
-    staff:
-      'Ramiro (encargado): 1 mención positiva ("muy atento y explicando cada detalle de cada plato"). Juani: 1 mención positiva.',
-    accion: {
-      titulo: 'Incorporar opciones gluten-free en la carta',
-      texto:
-        'El único 1★ en el dataset es por ausencia de opciones sin TACC. Incorporar 2 opciones gluten-free claramente señalizadas en la carta es la acción de mayor retorno reputacional disponible: convierte una crítica de 1★ recurrente en un diferenciador.',
+    tendencia: '📈 mejorando',
+    tendenciaDetalle: 'Base histórica débil.',
+    problemas: [
+      { problema: 'Producto mal cocido/frío', d14: 0, d60: 2, hist: 5, sev: 'ALTA', estado: '🔁' },
+      { problema: 'Precio/valor', d14: 0, d60: 3, hist: 6, sev: 'BAJA', estado: '🔁' },
+      { problema: 'Baño/reclamo', d14: 0, d60: 4, hist: 7, sev: 'ALTA', estado: '🔥' },
+    ],
+    citas: ['pan apelmazado medio crudo y frío', 'carísimo', 'no te dejen usar el baño'],
+    elogios: 'Atención, limpieza y ambiente aparecen positivos en 60d.',
+    accion: 'Control de cocción/temperatura antes de despacho y regla clara de baño para clientes.',
+  },
+  {
+    slug: 'la-horqueta',
+    rank: 7,
+    nombre: 'Dean & Dennys - La Horqueta',
+    short: 'La Horqueta',
+    reviews: 28,
+    ratingHist: '3.7★',
+    rating60d: '2.7★',
+    pct12_60d: '50%',
+    respuestaDueno: '0%',
+    estado: 'rojo',
+    pulso: {
+      d14: '5.0★ / 1 / 0% / 0%',
+      d60: '2.7★ / 4 / 50% / 0%',
+      hist: '3.7★ / 28 / 32% / 0%',
     },
+    tendencia: '📉 empeorando',
+    tendenciaDetalle: 'Baja muestra reciente.',
+    problemas: [
+      { problema: 'Atención / servicio', d14: 0, d60: 1, hist: 2, sev: 'ALTA', estado: '🔥' },
+      { problema: 'Demora', d14: 0, d60: 2, hist: 3, sev: 'MEDIA', estado: '🔁' },
+      { problema: 'Promesa de promo/cambio', d14: 0, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
+    ],
+    citas: ['Pésimo servicio', 'Tardaron en entregar el pedido', 'Hacen publicidad de que se pueden cambiar'],
+    elogios: 'Limpieza positiva histórica; producto rico reciente.',
+    accion: 'Alinear caja con menú/promos reales y revisar entrega de pedidos en picos.',
+  },
+  {
+    slug: 'lomas-de-zamora',
+    rank: 8,
+    nombre: 'Dean & Dennys - Lomas de Zamora',
+    short: 'Lomas de Zamora',
+    reviews: 12,
+    ratingHist: '3.4★',
+    rating60d: '2.0★',
+    pct12_60d: '57%',
+    respuestaDueno: '0%',
+    estado: 'rojo',
+    pulso: {
+      d14: '1.0★ / 1 / 100% / 0%',
+      d60: '2.0★ / 5 / 57% / 0%',
+      hist: '3.4★ / 12 / 37% / 0%',
+    },
+    tendencia: '📉 empeorando',
+    tendenciaDetalle: 'Baja muestra reciente.',
+    problemas: [
+      { problema: 'Pedido incompleto / no se hacen cargo', d14: 0, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
+      { problema: 'Alergia / pedido mal enviado', d14: 0, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
+      { problema: 'Espera por promo', d14: 2, d60: 2, hist: 2, sev: 'MEDIA', estado: '🆕' },
+    ],
+    citas: ['no envían las papas', 'el comensal es ALERGICO', 'esperamos más de 30 minutos'],
+    elogios: 'Producto rico histórico, pero sin sostén reciente.',
+    accion: 'Protocolo obligatorio para alergias y faltantes con compensación inmediata.',
+  },
+  {
+    slug: 'dot',
+    rank: 9,
+    nombre: 'Dean & Dennys - Dot',
+    short: 'Dot',
+    reviews: 15,
+    ratingHist: '2.8★',
+    rating60d: '2.0★',
+    pct12_60d: '75%',
+    respuestaDueno: '0%',
+    estado: 'rojo',
+    pulso: {
+      d14: '5.0★ / 1 / 0% / 0%',
+      d60: '2.0★ / 5 / 75% / 0%',
+      hist: '2.8★ / 15 / 48% / 0%',
+    },
+    tendencia: '📉 empeorando',
+    tendenciaDetalle: 'Baja muestra reciente.',
+    problemas: [
+      { problema: 'Frío por prioridad apps', d14: 0, d60: 2, hist: 2, sev: 'MEDIA', estado: '🆕' },
+      { problema: 'Pedido incompleto', d14: 0, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
+      { problema: 'Promo rechazada', d14: 0, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
+    ],
+    citas: ['estaban todas muy frías', 'Pedido incompleto', 'no me quisieron hacer la promo de 2x1'],
+    elogios: 'Producto rico aparece, pero muy tapado por fallas operativas.',
+    accion: 'Revisar cumplimiento de promos y control de pedidos antes de entregar.',
+  },
+  {
+    slug: 'abasto',
+    rank: 10,
+    nombre: 'Dean & Dennys - Abasto',
+    short: 'Abasto',
+    reviews: 6,
+    ratingHist: '2.3★',
+    rating60d: '1.8★',
+    pct12_60d: '80%',
+    respuestaDueno: '0%',
+    estado: 'rojo',
+    pulso: {
+      d14: '2.3★ / 2 / 67% / 0%',
+      d60: '1.8★ / 3 / 80% / 0%',
+      hist: '2.3★ / 6 / 67% / 0%',
+    },
+    tendencia: '📉 empeorando',
+    tendenciaDetalle: 'Mayor riesgo reputacional: baja muestra reciente, 80% negativo 60d y antecedente de higiene grave.',
+    problemas: [
+      { problema: 'No atienden por deliveries', d14: 2, d60: 2, hist: 2, sev: 'ALTA', estado: '🆕' },
+      { problema: 'Pedido marcado listo sin estarlo', d14: 0, d60: 2, hist: 2, sev: 'MEDIA', estado: '🆕' },
+      { problema: 'Higiene/plaga histórica', d14: 0, d60: 0, hist: 1, sev: 'ALTA', estado: '🔁' },
+    ],
+    citas: ['dejan de atender al público', 'marcan los pedidos listos y estan en preparacion', 'CUCARACHA'],
+    elogios: 'Casi sin señal positiva útil.',
+    accion: 'Auditoría sanitaria + regla de atención presencial aunque cocina esté saturada.',
   },
 ]
+
+export const RESUMEN = {
+  mejor: 'Belgrano: alto rating 60d y volumen suficiente.',
+  deterioro: 'Devoto: 14d cae a 2.8★ con 56% 1-2★.',
+  riesgo: 'Abasto: baja muestra reciente, 80% negativo 60d y antecedente de higiene grave.',
+}
 
 export const COMPARATIVA = {
   patrones: [
     {
-      patron: 'Respuestas del dueño casi nulas en Google',
-      lardito: '≈1%',
-      parrilla: '0%',
-      patriotas: '0%',
-      lardoRosemary: '0%',
-      lectura:
-        'Lardito tiene 1 respuesta sobre 151 reviews; los otros 3 en 0% — los 1-2★ quedan sin respuesta pública en todo el grupo.',
+      patron: 'Demoras/cocina saturada',
+      sucursales: 'Abasto, Devoto, Belgrano R, La Horqueta, Dean & Dennys, Belgrano',
+      lectura: 'El cuello de botella aparece tanto en salón como delivery.',
+      prioridad: 'ALTA',
     },
     {
-      patron: 'Atención excelente como fortaleza',
-      lardito: 'Sí',
-      parrilla: 'Sí',
-      patriotas: 'Sí',
-      lardoRosemary: 'Sí',
-      lectura:
-        'Activo diferenciador compartido — cultura de servicio sólida en los 4 locales.',
+      patron: 'Producto frío o mal preparado',
+      sucursales: 'Dean & Dennys, Dot, Flores, Caballito, Lomas, Devoto',
+      lectura: 'La marca pierde consistencia en temperatura/cocción.',
+      prioridad: 'ALTA',
     },
     {
-      patron: 'Ambiente / diseño como valor',
-      lardito: 'Sí',
-      parrilla: 'Sí',
-      patriotas: 'Sí',
-      lardoRosemary: 'Sí',
-      lectura:
-        'Los 4 locales usan el espacio como argumento gastronómico.',
+      patron: 'Delivery/apps desplazan salón',
+      sucursales: 'Abasto, Dot, Caballito, Belgrano R, Lomas',
+      lectura: 'Genera espera, abandono y mala percepción presencial.',
+      prioridad: 'ALTA',
     },
     {
-      patron: 'Porciones chicas / precio caro',
-      lardito: 'Sí',
-      parrilla: 'No',
-      patriotas: 'Sí',
-      lardoRosemary: 'Sí',
-      lectura:
-        '3 de 4 conceptos generan esta fricción — gestión comunicacional pendiente.',
+      patron: 'Promos mal comunicadas',
+      sucursales: 'Dot, Devoto, La Horqueta, Belgrano, Lomas',
+      lectura: 'Riesgo de enojo por expectativa incumplida/cobro percibido como injusto.',
+      prioridad: 'MEDIA',
     },
     {
-      patron: 'Carta de vinos como propuesta clave',
-      lardito: 'Sí',
-      parrilla: 'Sí',
-      patriotas: 'Sí',
-      lardoRosemary: 'Sí',
-      lectura:
-        'El vino es el hilo conductor del grupo.',
+      patron: 'Respuesta del dueño baja',
+      sucursales: '8 de 10 locales',
+      lectura: 'Reclamos recientes quedan sin contención pública.',
+      prioridad: 'ALTA',
     },
     {
-      patron: 'Clientes internacionales frecuentes',
-      lardito: 'Sí',
-      parrilla: 'Sí',
-      patriotas: 'Sí',
-      lardoRosemary: 'Sí',
-      lectura:
-        'Presencia turística en todos — oportunidad de reviews en inglés no capturada.',
+      patron: 'Limpieza/baños',
+      sucursales: 'Abasto, Belgrano R, Flores, Belgrano',
+      lectura: 'Pocas menciones, pero de severidad alta.',
+      prioridad: 'ALTA',
     },
   ],
   haceBien: [
-    {
-      marca: 'Lardito',
-      texto:
-        'El sommelier como operador visible genera confianza y fidelidad. Los otros locales no tienen un rol así de identificado públicamente.',
-    },
-    {
-      marca: 'Parrilla Maravilla',
-      texto:
-        'Staff nombrado individualmente en reseñas (6 nombres distintos). La personalización del servicio es más fuerte que en los otros 3.',
-    },
-    {
-      marca: 'Las Patriotas',
-      texto:
-        'Bartender como cara del local (Patricio/Pato). Modelo replicable: 1 persona = imagen del lugar. Además, el mejor momentum actual (5.0★ en 14d).',
-    },
-    {
-      marca: 'Lardo & Rosemary',
-      texto:
-        'El concepto más consistente en calidad: menor dispersión de quejas, sin problemas operativos agudos.',
-    },
+    { marca: 'Belgrano', texto: 'Mejor combinación de volumen, rating y staff nombrado positivamente.' },
+    { marca: 'Devoto', texto: 'Buen histórico de producto y mayor hábito de respuesta del dueño.' },
+    { marca: 'Belgrano R', texto: 'Mejora reciente y percepción de rapidez cuando opera bien.' },
+    { marca: 'La Horqueta', texto: 'Limpieza/ambiente positivos en histórico.' },
+    { marca: 'Flores', texto: 'Señales recientes de atención amable, baños limpios y mesas limpias.' },
+    { marca: 'Dean & Dennys', texto: 'Producto elogiado y repunte en 14d.' },
+    { marca: 'Caballito', texto: 'Atención cordial reciente pese a histórico flojo.' },
+    { marca: 'Dot', texto: 'Producto gusta cuando no falla operación.' },
+    { marca: 'Lomas de Zamora', texto: 'Producto valorado históricamente.' },
+    { marca: 'Abasto', texto: 'Sin fortaleza consistente detectable con esta muestra.' },
   ],
-  puntos: [
-    {
-      titulo: 'Política de respuesta a reviews (~0% en los 4 locales)',
-      texto:
-        'Lardito tiene 1 respuesta sobre 151 reviews; los otros 3 están en 0%. Los 1★ y 2★ quedan sin respuesta pública en prácticamente todo el grupo. Una respuesta profesional a una mala reseña vale más que 5 nuevas de 5★ en términos de percepción de nuevos visitantes. Implementar protocolo de respuesta en 48hs para reseñas de 1-2★.',
-    },
-    {
-      titulo: 'Servicio del domingo en Parrilla Maravilla (5 meses sin resolver)',
-      texto:
-        'Es un agujero operativo puro de dimensionamiento de personal, no de cocina ni de producto. Seguirá generando reviews de 1★ que arrastran el promedio si no se actúa.',
-    },
-    {
-      titulo: 'Expectativas de precio/porción (3 de 4 conceptos)',
-      texto:
-        'Los clientes llegan sin entender el modelo de tapeo. Ningún local lo comunica proactivamente. Un simple "sugerimos 2-3 platos por persona" al inicio de la mesa reduciría la fricción sin cambiar nada del producto.',
-    },
+  prioridades: [
+    'Cocina saturada y demoras: separar SLA de salón, retiro y apps por franja horaria.',
+    'Temperatura/cocción inconsistente: control final obligatorio antes de despacho.',
+    'Reclamos sin respuesta: responder 100% de 1-2★ en menos de 48 hs.',
+    'Promos mal comunicadas: tablero único de promos vigentes por sucursal y caja.',
+    'Higiene/baños: auditoría inmediata en Abasto, Belgrano R, Flores y Belgrano.',
   ],
 }

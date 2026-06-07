@@ -16,7 +16,7 @@
 .editionNav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   margin-bottom: 40px;
   position: sticky;
@@ -49,6 +49,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  flex: 0 0 auto;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
@@ -57,13 +58,11 @@
   white-space: nowrap;
 }
 
-.editionNavBrand::before {
-  content: "";
-  width: 6px;
-  height: 6px;
+.editionNavBrand img {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: var(--hot);
-  box-shadow: 0 0 10px var(--hot);
+  object-fit: cover;
   flex-shrink: 0;
 }
 
@@ -71,11 +70,15 @@
 .editionNavGroup {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
   gap: 4px;
   padding: 4px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 24px;
   background: rgba(245, 237, 225, 0.025);
+  min-width: 0;
 }
 
 .editionNavGroup a {
@@ -84,7 +87,7 @@
   font-size: 10px;
   letter-spacing: 0.14em;
   line-height: 1;
-  padding: 9px 16px;
+  padding: 9px 14px;
   border-radius: 999px;
   text-transform: uppercase;
   white-space: nowrap;
@@ -105,6 +108,7 @@
 
 @media (max-width: 700px) {
   .editionNav {
+    align-items: stretch;
     gap: 12px;
     margin-bottom: 24px;
     padding: 14px 0 12px;
@@ -116,10 +120,12 @@
 
   .editionNavGroup {
     width: 100%;
+    justify-content: flex-start;
+    border-radius: 22px;
   }
 
   .editionNavGroup a {
-    flex: 1;
+    flex: 1 1 auto;
     text-align: center;
     padding: 10px 8px;
   }
@@ -760,7 +766,7 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   RESTAURANTES — UI específica
+   SUCURSALES — UI específica
    ══════════════════════════════════════════════════════ */
 
 /* ── Header de restaurante ────────────────────────────── */
@@ -873,6 +879,24 @@
   text-transform: uppercase;
 }
 
+.tendBadge.amarillo {
+  border-color: rgba(255, 184, 107, 0.42);
+  background: rgba(255, 184, 107, 0.1);
+  color: var(--ember);
+}
+
+.tendBadge.rojo {
+  border-color: rgba(255, 69, 0, 0.48);
+  background: rgba(255, 69, 0, 0.1);
+  color: var(--hot);
+}
+
+.tendBadge.verde {
+  border-color: rgba(135, 214, 139, 0.4);
+  background: rgba(135, 214, 139, 0.08);
+  color: #87d68b;
+}
+
 /* ── Tabla de pulso (14d / 60d / histórico) ───────────── */
 
 .pulsoTable {
@@ -882,7 +906,7 @@
 .pulsoHeader,
 .pulsoRow {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(120px, 0.5fr) minmax(0, 1.5fr);
   gap: 14px;
   align-items: center;
 }
@@ -920,8 +944,9 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: 26px;
+  font-size: clamp(20px, 3vw, 28px);
   color: var(--ink);
+  white-space: normal;
 }
 
 .pulsoRow b.now {
@@ -949,6 +974,10 @@
 }
 
 .problemCard.med {
+  border-left-color: var(--ember);
+}
+
+.problemCard.media {
   border-left-color: var(--ember);
 }
 
@@ -989,6 +1018,12 @@
 }
 
 .sevBadge.med {
+  background: rgba(255, 184, 107, 0.16);
+  color: var(--ember);
+  border: 1px solid rgba(255, 184, 107, 0.35);
+}
+
+.sevBadge.media {
   background: rgba(255, 184, 107, 0.16);
   color: var(--ember);
   border: 1px solid rgba(255, 184, 107, 0.35);

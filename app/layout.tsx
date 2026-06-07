@@ -3,8 +3,8 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Reseñas · Lardito · Parrilla Maravilla · Las Patriotas",
-  description: "Análisis de reseñas de Google de los tres restaurantes del grupo.",
+  title: "Contame · Ranking de salud operativa",
+  description: "Dashboard de reseñas Google y salud operativa para sucursales Dean & Dennys.",
 }
 
 export default function RootLayout({
