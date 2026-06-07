@@ -1,14 +1,49 @@
 import type { CSSProperties } from 'react'
 import Link from 'next/link'
-import { RESUMEN, SUCURSALES } from './data'
-import { statusDot } from './shared'
+import { RESTAURANTES } from './data'
 import styles from './landing.module.css'
 
 export const metadata = {
-  title: 'Dean & Dennys · Contame',
+  title: 'Reseñas · Lardito · Parrilla Maravilla · Las Patriotas · Lardo & Rosemary',
   description:
-    'Dashboard mensual de sucursales Dean & Dennys: pulso, problemas, comparativa y prioridades.',
+    'Las reseñas de Google de los cuatro restaurantes, leídas en serio: pulso de rating, problemas recurrentes y la acción de la semana de cada local.',
 }
+
+const STEPS = [
+  {
+    n: '01',
+    t: 'Reseñas',
+    d: 'Todas las reseñas de Google de cada local, abiertas y cerradas.',
+  },
+  {
+    n: '02',
+    t: 'Lectura',
+    d: 'Patrones recurrentes, severidad y evolución en el tiempo: 14d / 60d / histórico.',
+  },
+  {
+    n: '03',
+    t: 'Acciones',
+    d: 'Qué mejorar primero en cada local y a nivel grupo.',
+  },
+]
+
+const TEAM = [
+  {
+    name: 'Benja Bertone',
+    role: 'Análisis de reseñas y reputación online.',
+    linkedin: 'https://www.linkedin.com/in/benja-bertone/',
+  },
+  {
+    name: 'Sebastián Fraire',
+    role: 'Socio.',
+    linkedin: 'https://www.linkedin.com/in/sebastian-fraire/',
+  },
+  {
+    name: 'Francisco Pascual',
+    role: 'Socio.',
+    linkedin: 'https://www.linkedin.com/in/francisco-pascual-17a652369/',
+  },
+]
 
 export default function Home() {
   return (
@@ -24,63 +59,32 @@ export default function Home() {
       }
     >
       <main className={styles.wrap}>
+        {/* HERO */}
         <header className={styles.hero}>
-          <div className={styles.heroTop}>
-            <span className={styles.heroLogo}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/dean-dennys-logo.jpg" alt="Dean & Dennys" />
-            </span>
-            <div>
-              <p className={styles.eyebrow}>Contame · tablero mensual</p>
-              <h1 className={styles.title}>
-                Dean &amp; Dennys
-                <br />
-                <em>por sucursal</em>
-              </h1>
-            </div>
-          </div>
+          <p className={styles.eyebrow}>Análisis de reseñas · Google</p>
+          <h1 className={styles.title}>
+            4 restaurantes,
+            <br />
+            una sola <em>lectura</em>.
+          </h1>
+          <p className={styles.lead}>
+            Las reseñas de Google de Lardito, Parrilla Maravilla, Las Patriotas y Lardo &amp; Rosemary,
+            leídas en serio: pulso de rating, problemas recurrentes, elogios y la acción de la semana
+            de cada local — más la comparativa del grupo.
+          </p>
 
-          <div className={styles.summaryGrid}>
-            <div>
-              <span>Mejor sucursal hoy</span>
-              <p>{RESUMEN.mejor}</p>
-            </div>
-            <div>
-              <span>Mayor deterioro</span>
-              <p>{RESUMEN.deterioro}</p>
-            </div>
-            <div>
-              <span>Riesgo reputacional</span>
-              <p>{RESUMEN.riesgo}</p>
-            </div>
-          </div>
-
-          <div className={styles.branchGrid}>
-            {SUCURSALES.map((s) => (
-              <Link key={s.slug} href={`/${s.slug}`} className={styles.branchCard}>
-                <div className={styles.branchHead}>
-                  <span className={styles.branchRank}>#{s.rank}</span>
-                  <span className={`${styles.branchStatus} ${styles[s.estado]}`}>
-                    {statusDot(s.estado)}
-                  </span>
-                </div>
-                <h2>{s.short}</h2>
-                <div className={styles.branchStats}>
-                  <span>
-                    <b>{s.rating60d}</b>
-                    60d
-                  </span>
-                  <span>
-                    <b>{s.reviews}</b>
-                    reviews
-                  </span>
-                  <span>
-                    <b>{s.pct12_60d}</b>
-                    1-2★
-                  </span>
-                </div>
-                <p>{s.accion}</p>
-                <span className={styles.branchArrow}>Ver sucursal →</span>
+          <div className={styles.restoGrid}>
+            {RESTAURANTES.map((r) => (
+              <Link key={r.slug} href={`/${r.slug}`} className={styles.restoCard}>
+                <span className={styles.restoLogoBox}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className={styles.restoLogoImg} src={r.logo} alt={r.nombre} />
+                </span>
+                <p className={styles.restoName}>{r.nombre}</p>
+                <p className={styles.restoMeta}>
+                  <b>{r.reviews}</b> reseñas · <b>{r.rating}★</b>
+                </p>
+                <span className={styles.restoArrow}>Ver análisis →</span>
               </Link>
             ))}
           </div>
@@ -91,6 +95,52 @@ export default function Home() {
             </Link>
           </div>
         </header>
+
+        {/* CÓMO FUNCIONA */}
+        <section className={styles.section}>
+          <div className={styles.sectionHead}>
+            <h2>
+              Cómo <em>funciona</em>
+            </h2>
+            <span className={styles.num}>Tres pasos</span>
+          </div>
+          <div className={styles.steps}>
+            {STEPS.map((s, i) => (
+              <div key={s.n} className={styles.step}>
+                <span className={styles.stepNum}>{s.n}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+                {i < STEPS.length - 1 && <span className={styles.stepArrow}>→</span>}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* QUIÉNES LO HACEN */}
+        <section className={styles.section}>
+          <div className={styles.sectionHead}>
+            <h2>
+              Quiénes lo <em>hacen</em>
+            </h2>
+            <span className={styles.num}>Equipo</span>
+          </div>
+          <div className={styles.team}>
+            {TEAM.map((m) => (
+              <div key={m.name} className={styles.teamMember}>
+                <p className={styles.teamName}>{m.name}</p>
+                <p className={styles.teamRole}>{m.role}</p>
+                <a
+                  href={m.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.teamLink}
+                >
+                  LinkedIn ↗
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   )
