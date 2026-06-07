@@ -27,6 +27,24 @@ const STEPS = [
   },
 ]
 
+const TEAM = [
+  {
+    name: 'Benja Bertone',
+    role: 'Análisis de reseñas y reputación online.',
+    linkedin: 'https://www.linkedin.com/in/benja-bertone/',
+  },
+  {
+    name: 'Sebastián Fraire',
+    role: 'Socio.',
+    linkedin: 'https://www.linkedin.com/in/sebastian-fraire/',
+  },
+  {
+    name: 'Francisco Pascual',
+    role: 'Socio.',
+    linkedin: 'https://www.linkedin.com/in/francisco-pascual-17a652369/',
+  },
+]
+
 export default function Home() {
   return (
     <div
@@ -98,29 +116,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* QUIÉN LO HACE */}
+        {/* QUIÉNES LO HACEN */}
         <section className={styles.section}>
           <div className={styles.sectionHead}>
             <h2>
-              Quién lo <em>hace</em>
+              Quiénes lo <em>hacen</em>
             </h2>
-            <span className={styles.num}>Autor</span>
+            <span className={styles.num}>Equipo</span>
           </div>
-          <div className={styles.author}>
-            <div>
-              <p className={styles.authorName}>Benja Bertone</p>
-              <p className={styles.authorRole}>
-                Análisis de reseñas y reputación online.
-              </p>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/benja-bertone/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ghost}
-            >
-              LinkedIn ↗
-            </a>
+          <div className={styles.team}>
+            {TEAM.map((m) => (
+              <div key={m.name} className={styles.teamMember}>
+                <p className={styles.teamName}>{m.name}</p>
+                <p className={styles.teamRole}>{m.role}</p>
+                <a
+                  href={m.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.teamLink}
+                >
+                  LinkedIn ↗
+                </a>
+              </div>
+            ))}
           </div>
         </section>
       </main>

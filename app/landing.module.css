@@ -459,6 +459,68 @@
   max-width: 40ch;
 }
 
+/* ── Equipo (autor + socios) ──────────────────────────── */
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .team {
+    grid-template-columns: 1fr;
+  }
+}
+
+.teamMember {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 24px;
+  background: linear-gradient(160deg, var(--bg-2), var(--bg));
+}
+
+.teamName {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(26px, 3vw, 34px);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.teamRole {
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.teamLink {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+}
+
+.teamLink:hover {
+  border-color: var(--hot);
+  color: var(--hot);
+  background: rgba(240, 78, 35, 0.06);
+}
+
 /* ── Footer ───────────────────────────────────────────── */
 
 .footer {
